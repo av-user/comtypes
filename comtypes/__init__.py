@@ -177,10 +177,10 @@ def shutdown(func=_ole32_nohresult.CoUninitialize,
              _exc_clear=getattr(sys, "exc_clear", lambda: None)):
     # Make sure no COM pointers stay in exception frames.
     _exc_clear()
-    # Sometimes, CoUnititialize, running at Python shutdown,
+    # Sometimes, CoUninitialize, running at Python shutdown,
     # raises an exception.  We suppress this when __debug__ is
     # False.
-    _debug("Calling CoUnititialize()")
+    _debug("Calling CoUninitialize()")
     if __debug__:
         func()
     else:
@@ -190,7 +190,7 @@ def shutdown(func=_ole32_nohresult.CoUninitialize,
     # needed.
     if _cominterface_meta is not None:
         _cominterface_meta._com_shutting_down = True
-    _debug("CoUnititialize() done.")
+    _debug("CoUninitialize() done.")
 
 import atexit
 atexit.register(shutdown)
